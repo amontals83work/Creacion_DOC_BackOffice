@@ -3,15 +3,14 @@ Imports Microsoft.Office.Interop.Word
 Imports System.Drawing
 Imports System.Data.SqlClient
 Imports Microsoft.Win32
+Imports System.Threading
 
-'acuerdo de pago
-'ajustar quita y fecha
-'descargar en escritorio
 Public Class Form1
 
     Dim connectionString As String = "Data Source=192.168.50.48;Initial Catalog=DespachoMc;Persist Security Info=True;User ID=sa;Password=Binabiq2018_;MultipleActiveResultSets=True;"
 
-    Dim nif As String = ""
+    Dim nif As String = String.Empty
+    Dim exp As String = String.Empty
     Dim nombre As String = String.Empty
     Dim expediente As String = String.Empty
     Dim refCliente As String = String.Empty
@@ -19,6 +18,7 @@ Public Class Form1
     Dim idCliente As String = String.Empty
     Dim contrato As String = String.Empty
     Dim cliente As String = String.Empty
+    Dim descripcion As String = String.Empty
     Dim fechaHoy As String = DateTime.Now.ToString("yyyyMMdd")
     Dim portfolio As String = String.Empty
     Dim portfolioText As String = String.Empty
@@ -26,8 +26,7 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Me.Size = New Size(Me.Width, 145)
-
+        cBox.Items.Clear()
         cBox.SelectedIndex = -1
         cBox.DisplayMember = ""
         cBox.Items.Add("Carta de acuerdo AK")
@@ -35,52 +34,82 @@ Public Class Form1
         cBox.Items.Add("Carta de cancelación")
         cBox.Items.Add("Helloletter")
 
+        cBoxCancelacion.Items.Clear()
         cBoxCancelacion.SelectedIndex = -1
         cBoxCancelacion.DisplayMember = ""
-        cBoxCancelacion.Items.Add("Crisalida")
+        cBoxCancelacion.Items.Add("Crisalidas")
         cBoxCancelacion.Items.Add("Orange")
         cBoxCancelacion.Items.Add("Pagantis")
         cBoxCancelacion.Visible = False
 
+        cBoxHelloletter.Items.Clear()
+        cBoxHelloletter.SelectedIndex = -1
+        cBoxHelloletter.DisplayMember = ""
+        cBoxHelloletter.Visible = False
+
         txtDNI.Visible = False
+        txtExpHelloLetter.Visible = False
+        cBoxCancelacion.Visible = False
+        cBoxHelloletter.Visible = False
         pnlDatos.Visible = False
         pnlBotones.Visible = False
 
         btnDescargar.Visible = False
         btnBorrar.Visible = False
 
+        Me.Size = New Size(Me.Width, 160)
+
     End Sub
 
     Private Sub cBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cBox.SelectedIndexChanged
 
         txtDNI.Visible = False
-        Borrar()
+        btnBorrar.PerformClick()
+        'Borrar()
 
         If cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Carta de acuerdo AK" Then
 
             txtDNI.Visible = True
+            txtDNI.ReadOnly = False
+            txtExpHelloLetter.Visible = False
+            txtExpHelloLetter.ReadOnly = False
             cBoxCancelacion.Visible = False
             pnlDatos.Visible = False
             lblPlazos.Text = "Quita"
             lblPlazos.Visible = True
             lblPlazoAPT.Text = "Fecha de Pago"
             lblPlazoAPT.Visible = True
-            txtContrato.Visible = False
-            txtImporte.Visible = False
+            txtContrato.Visible = True
+            txtContrato.ReadOnly = False
+            txtImporte.Visible = True
+            txtImporte.ReadOnly = False
             txtImporteQuita.Visible = False
+            txtImporteQuita.ReadOnly = False
             txtImportePlazo1.Visible = True
+            txtImportePlazo1.ReadOnly = False
             txtImportePlazo2.Visible = False
+            txtImportePlazo2.ReadOnly = False
             txtImportePlazo3.Visible = False
+            txtImportePlazo3.ReadOnly = False
             txtImportePlazo4.Visible = False
+            txtImportePlazo4.ReadOnly = False
             txtImportePlazo5.Visible = False
+            txtFechaPlazo5.ReadOnly = False
             txtImportePlazo6.Visible = False
+            txtImportePlazo6.ReadOnly = False
             txtFechaPlazo1.Visible = True
+            txtFechaPlazo1.ReadOnly = False
             txtFechaPlazo2.Visible = False
+            txtFechaPlazo2.ReadOnly = False
             txtFechaPlazo3.Visible = False
+            txtFechaPlazo3.ReadOnly = False
             txtFechaPlazo4.Visible = False
+            txtFechaPlazo4.ReadOnly = False
             txtFechaPlazo5.Visible = False
+            txtFechaPlazo5.ReadOnly = False
             txtFechaPlazo6.Visible = False
-            pnlAPT.Location = New Drawing.Point(0, 50)
+            txtFechaPlazo6.ReadOnly = False
+            pnlAPT.Location = New Drawing.Point(0, 100)
             pnlBotones.Location = New Drawing.Point(10, 115)
             pnlBotones.Visible = True
             btnDescargar.Visible = False
@@ -92,6 +121,7 @@ Public Class Form1
         ElseIf cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Carta de acuerdo plazos AK" Then
 
             txtDNI.Visible = True
+            txtExpHelloLetter.Visible = False
             cBoxCancelacion.Visible = False
             pnlDatos.Visible = False
             lblPlazos.Text = "Plazos"
@@ -125,6 +155,7 @@ Public Class Form1
         ElseIf cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Carta de cancelación" Then
 
             txtDNI.Visible = False
+            txtExpHelloLetter.Visible = False
             cBoxCancelacion.Visible = True
             pnlDatos.Visible = False
             lblPlazos.Visible = False
@@ -152,6 +183,39 @@ Public Class Form1
             btnBorrar.Visible = False
             Me.Size = New Size(Me.Width, 195)
             tipo = 3
+            cBoxCancelacion.Font = New Drawing.Font(cBoxCancelacion.Font.FontFamily, 8.25F)
+
+        ElseIf cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Helloletter" Then
+
+            txtDNI.Visible = False
+            txtExpHelloLetter.Visible = True
+            cBoxCancelacion.Visible = False
+            pnlDatos.Visible = False
+            lblPlazos.Visible = False
+            lblPlazoAPT.Visible = False
+            txtContrato.Visible = False
+            txtImporte.Visible = False
+            txtImporteQuita.Visible = False
+            txtImportePlazo1.Visible = False
+            txtImportePlazo2.Visible = False
+            txtImportePlazo3.Visible = False
+            txtImportePlazo4.Visible = False
+            txtImportePlazo5.Visible = False
+            txtImportePlazo6.Visible = False
+            txtFechaPlazo1.Visible = False
+            txtFechaPlazo2.Visible = False
+            txtFechaPlazo3.Visible = False
+            txtFechaPlazo4.Visible = False
+            txtFechaPlazo5.Visible = False
+            txtFechaPlazo6.Visible = False
+            pnlAPT.Location = New Drawing.Point(0, 122)
+            pnlBotones.Location = New Drawing.Point(10, 115)
+            pnlBotones.Visible = True
+            btnDescargar.Visible = False
+            btnMostrar.Visible = True
+            btnBorrar.Visible = False
+            Me.Size = New Size(Me.Width, 195)
+            tipo = 4
 
         End If
 
@@ -170,16 +234,29 @@ Public Class Form1
         Me.Size = New Size(Me.Width, 195)
         cBoxCancelacion.Visible = False
 
-        If cBoxCancelacion.SelectedItem IsNot Nothing AndAlso cBoxCancelacion.SelectedItem.ToString() = "Crisalida" Then
+        If cBoxCancelacion.SelectedItem IsNot Nothing AndAlso cBoxCancelacion.SelectedItem.ToString() = "Crisalidas" Then
             portfolio = "Crisalida"
-            portfolioText = "AXACTOR PORTFOLIO HOLDING AB"
+            'portfolioText = "AXACTOR PORTFOLIO HOLDING AB"
         ElseIf cBoxCancelacion.SelectedItem IsNot Nothing AndAlso cBoxCancelacion.SelectedItem.ToString() = "Orange" Then
             portfolio = "Orange"
-            portfolioText = "QUARTZ CAPITAL FUND II, cuyo origen es Orange"
+            'portfolioText = "QUARTZ CAPITAL FUND II, cuyo origen es Orange"
         ElseIf cBoxCancelacion.SelectedItem IsNot Nothing AndAlso cBoxCancelacion.SelectedItem.ToString() = "Pagantis" Then
             portfolio = "Pagantis"
-            portfolioText = "Pagamastarde, S.L. y cuyo origen es Pagantis"
+            'portfolioText = "Pagamastarde, S.L. y cuyo origen es Pagantis"
         End If
+
+    End Sub
+
+    Private Sub cBoxHelloletter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cBoxHelloletter.SelectedIndexChanged
+
+        pnlDatos.Visible = False
+        lblPlazos.Visible = False
+        pnlBotones.Location = New Drawing.Point(10, 115)
+        pnlBotones.Visible = True
+        btnDescargar.Visible = True
+        btnMostrar.Visible = False
+        btnBorrar.Visible = True
+        Me.Size = New Size(Me.Width, 225)
 
     End Sub
 
@@ -188,16 +265,30 @@ Public Class Form1
         txtDNI.Visible = False
         pnlDatos.Visible = False
         pnlBotones.Visible = False
+        btnMostrar.Visible = False
+        btnBorrar.Visible = True
 
         If cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Carta de acuerdo AK" Then
             txtDNI.Visible = True
-            pnlBotones.Location = New Drawing.Point(10, 210)
+            txtDNI.ReadOnly = True
+            txtNombre.ReadOnly = True
+            txtContrato.ReadOnly = True
+            txtExpediente.ReadOnly = True
+            txtImporte.ReadOnly = True
+            btnDescargar.Visible = True
+            pnlBotones.Location = New Drawing.Point(10, 265)
             pnlDatos.Location = New Drawing.Point(10, 114)
             pnlDatos.Visible = True
             pnlBotones.Visible = True
-            Me.Size = New Size(Me.Width, 320)
+            Me.Size = New Size(Me.Width, 380)
         ElseIf cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Carta de acuerdo plazos AK" Then
             txtDNI.Visible = True
+            txtDNI.ReadOnly = True
+            txtNombre.ReadOnly = True
+            txtContrato.ReadOnly = True
+            txtExpediente.ReadOnly = True
+            txtImporte.ReadOnly = True
+            btnDescargar.Visible = True
             pnlBotones.Location = New Drawing.Point(10, 405)
             pnlDatos.Location = New Drawing.Point(10, 114)
             pnlDatos.Visible = True
@@ -205,16 +296,31 @@ Public Class Form1
             Me.Size = New Size(Me.Width, 515)
         ElseIf cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Carta de cancelación" Then
             txtDNI.Visible = True
+            txtDNI.ReadOnly = True
+            txtNombre.ReadOnly = True
+            txtContrato.ReadOnly = True
+            txtExpediente.ReadOnly = True
+            txtImporte.ReadOnly = True
+            btnDescargar.Visible = True
             pnlBotones.Location = New Drawing.Point(10, 165)
             pnlDatos.Location = New Drawing.Point(10, 114)
             pnlDatos.Visible = True
             pnlBotones.Visible = True
             Me.Size = New Size(Me.Width, 275)
-        End If
+        ElseIf cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Helloletter" Then
+            txtExpHelloLetter.Visible = True
+            txtExpHelloLetter.ReadOnly = True
+            txtNombre.ReadOnly = True
+            txtContrato.ReadOnly = True
+            txtExpediente.ReadOnly = True
+            txtImporte.ReadOnly = True
+            cBoxHelloletter.Visible = True
+            btnDescargar.Visible = False
+            pnlBotones.Location = New Drawing.Point(10, 85)
+            pnlBotones.Visible = True
+            Me.Size = New Size(Me.Width, 195)
 
-        btnMostrar.Visible = False
-        btnDescargar.Visible = True
-        btnBorrar.Visible = True
+        End If
 
         Select Case tipo
             Case 1
@@ -224,7 +330,7 @@ Public Class Form1
             Case 3
                 DatosCancelacion()
             Case 4
-                'DatosHelloLetter()
+                DescripcionCarteraHelloLetter()
         End Select
 
     End Sub
@@ -239,7 +345,7 @@ Public Class Form1
             Case 3
                 CartaCancelacion()
             Case 4
-                'HelloLetter()
+                HelloLetter()
 
         End Select
     End Sub
@@ -410,7 +516,7 @@ Public Class Form1
         doc.Close()
         wordApp.Quit()
 
-        MessageBox.Show("Guardado en el ESCRITORIO'")
+        MessageBox.Show("Guardado en el ESCRITORIO")
 
     End Sub
 
@@ -537,19 +643,19 @@ Public Class Form1
         listadoImportes.ListFormat.ApplyBulletDefault()
         Dim listadoCompleto As String = ""
         listadoCompleto &= txtImportePlazo1.Text.Trim & "€ antes del " & txtFechaPlazo1.Text.Trim & vbCrLf & txtImportePlazo2.Text.Trim & "€ antes del " & txtFechaPlazo2.Text.Trim & vbCrLf
-        If Not String.IsNullOrWhiteSpace(txtImportePlazo3.Text) AndAlso Not String.IsNullOrWhiteSpace(txtImportePlazo3.Text) Then
+        If Not String.IsNullOrWhiteSpace(txtImportePlazo3.Text) AndAlso Not String.IsNullOrWhiteSpace(txtFechaPlazo3.Text) Then
             listadoCompleto &= txtImportePlazo3.Text.Trim & "€ antes del " & txtFechaPlazo3.Text.Trim & vbCrLf
         End If
-        If Not String.IsNullOrWhiteSpace(txtImportePlazo4.Text) AndAlso Not String.IsNullOrWhiteSpace(txtImportePlazo4.Text) Then
+        If Not String.IsNullOrWhiteSpace(txtImportePlazo4.Text) AndAlso Not String.IsNullOrWhiteSpace(txtFechaPlazo4.Text) Then
             listadoCompleto &= txtImportePlazo4.Text.Trim & "€ antes del " & txtFechaPlazo4.Text.Trim & vbCrLf
         End If
-        If Not String.IsNullOrWhiteSpace(txtImportePlazo5.Text) AndAlso Not String.IsNullOrWhiteSpace(txtImportePlazo5.Text) Then
+        If Not String.IsNullOrWhiteSpace(txtImportePlazo5.Text) AndAlso Not String.IsNullOrWhiteSpace(txtFechaPlazo5.Text) Then
             listadoCompleto &= txtImportePlazo5.Text.Trim & "€ antes del " & txtFechaPlazo5.Text.Trim & vbCrLf
         End If
-        If Not String.IsNullOrWhiteSpace(txtImportePlazo6.Text) AndAlso Not String.IsNullOrWhiteSpace(txtImportePlazo6.Text) Then
+        If Not String.IsNullOrWhiteSpace(txtImportePlazo6.Text) AndAlso Not String.IsNullOrWhiteSpace(txtFechaPlazo6.Text) Then
             listadoCompleto &= txtImportePlazo6.Text.Trim & "€ antes del " & txtFechaPlazo6.Text.Trim & vbCrLf
         End If
-        listadoImportes.Text = listadoCompleto.Trim
+        listadoImportes.Text = listadoCompleto
 
         ' Párrafo 4
         doc.Content.Collapse(Microsoft.Office.Interop.Word.WdCollapseDirection.wdCollapseEnd)
@@ -599,14 +705,15 @@ Public Class Form1
         doc.Close()
         wordApp.Quit()
 
-        MessageBox.Show("Guardado en el ESCRITORIO'")
+        MessageBox.Show("Guardado en el ESCRITORIO")
 
     End Sub
 
     Private Sub DatosCancelacion()
-        Dim query As String = "SELECT D.TITULAR, ED.IdExpediente, E.Expediente, E.RefCliente, E.DeudaTotal, E.IdCliente FROM Deudores AS D 
+        Dim query As String = "SELECT D.TITULAR, ED.IdExpediente, E.Expediente, E.RefCliente, E.DeudaTotal, E.IdCliente, R.CodFactura FROM Deudores AS D 
                                 JOIN ExpedientesDeudores AS ED ON ED.idDeudor = D.idDeudor 
                                 JOIN Expedientes AS E ON E.IdExpediente = ED.IdExpediente 
+                                JOIN Recibos AS R ON R.IdExpediente = ED.idExpediente
                                 WHERE NIF = @nif"
 
         Dim listaDatos As New List(Of Dictionary(Of String, String))
@@ -624,6 +731,7 @@ Public Class Form1
                             registro("Expediente") = reader("Expediente").ToString().Trim
                             registro("RefCliente") = reader("RefCliente").ToString().Trim
                             registro("IdCliente") = reader("IdCliente").ToString().Trim
+                            registro("Contrato") = reader("CodFactura").ToString().Trim
 
                             listaDatos.Add(registro)
                         End While
@@ -642,6 +750,7 @@ Public Class Form1
                 nombre = dato("Nombre").Trim
                 expediente &= dato("RefCliente").Trim & " - "
                 idCliente = dato("IdCliente").Trim
+                contrato &= dato("Contrato").Trim & " - "
             Next
             expediente = expediente.TrimEnd(" "c, "-"c)
             contrato = contrato.TrimEnd(" "c, "-"c)
@@ -650,6 +759,7 @@ Public Class Form1
             nombre = dato("Nombre").Trim
             expediente = dato("RefCliente").Trim
             idCliente = dato("IdCliente").Trim
+            contrato = dato("Contrato").Trim
         End If
 
         txtNombre.Text = nombre
@@ -691,14 +801,22 @@ Public Class Form1
         Dim prf1 As Microsoft.Office.Interop.Word.Range = doc.Range(doc.Content.End - 1, doc.Content.End)
         prf1.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphJustify
         prf1.HighlightColorIndex = Microsoft.Office.Interop.Word.WdColorIndex.wdNoHighlight
-        prf1.Text = vbCrLf & "Referencia del crédito: " & expediente & vbCrLf & vbCrLf & vbCrLf & "Estimado/a D/Dña.: " & nombre.ToUpper() & vbCrLf
-        prf1.Font.Size = 11
+        If portfolio = "Crisalida" Then
+            prf1.Text = vbCrLf & "Expediente: " & expediente & vbCrLf & vbCrLf & "Estimado/a D/Dña.: " & nombre.ToUpper() & vbCrLf
+        Else
+            prf1.Text = vbCrLf & "Referencia del crédito: " & expediente & vbCrLf & vbCrLf & "Estimado/a D/Dña.: " & nombre.ToUpper() & vbCrLf
+        End If
+        prf1.Font.Size = 10
         prf1.Font.Bold = False
 
         ' Párrafo 1
         doc.Content.Collapse(Microsoft.Office.Interop.Word.WdCollapseDirection.wdCollapseEnd)
         Dim prf2 As Microsoft.Office.Interop.Word.Range = doc.Range(doc.Content.End - 1, doc.Content.End)
-        prf2.Text = vbCrLf & "Nos dirigimos a usted para recordarle que " & portfolio & ", cedió a AKCP EUROPE SCSP el crédito que tenía pendiente con usted, bajo la referencia: " & expediente & "." & vbCrLf
+        prf2.Text = vbCrLf & "Nos dirigimos a usted para recordarle que el crédito bajo referencia " & contrato & " fue cedido a AKCP EUROPE SCSP" & vbCrLf
+        'If portfolio = "Crisalida" Then
+        'Else
+        '    prf2.Text = vbCrLf & "Nos dirigimos a usted para recordarle que " & portfolioText & ", cedió a AKCP EUROPE SCSP el crédito que tenía pendiente con usted, bajo la referencia: " & expediente & "." & vbCrLf
+        'End If
 
 
         ' Párrafo 2 
@@ -712,13 +830,13 @@ Public Class Form1
         doc.Content.Collapse(Microsoft.Office.Interop.Word.WdCollapseDirection.wdCollapseEnd)
         Dim prf4 As Microsoft.Office.Interop.Word.Range = doc.Range(doc.Content.End - 1, doc.Content.End)
         prf4.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphJustify
-        prf4.Text = vbCrLf & "Teniendo en cuenta lo anterior, y en respuesta a su solicitud por escrito sobre el estado actual de la deuda mencionada, nos complace informarle que:"
+        prf4.Text = vbCrLf & "Teniendo en cuenta lo anterior, y en respuesta a su solicitud por escrito sobre el estado actual de la deuda mencionada, nos complace informarle que:" & vbCrLf
 
         ' Párrafo 4
         doc.Content.Collapse(Microsoft.Office.Interop.Word.WdCollapseDirection.wdCollapseEnd)
         Dim prf5 As Microsoft.Office.Interop.Word.Range = doc.Range(doc.Content.End - 1, doc.Content.End)
         prf5.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphJustify
-        prf5.Text = vbCrLf & "SU DEUDA HA SIDO TOTALMENTE CANCELADA. Por consiguiente, en relación con el contrato mencionado anteriormente, no se adeuda cantidad alguna."
+        prf5.Text = vbCrLf & "SU DEUDA HA SIDO TOTALMENTE CANCELADA. Por consiguiente, en relación con el contrato mencionado anteriormente, no se adeuda cantidad alguna." & vbCrLf
         prf5.Font.Bold = True
 
         ' Párrafo 5 FECHA
@@ -761,17 +879,154 @@ Public Class Form1
         doc.Close()
         wordApp.Quit()
 
-        MessageBox.Show("Guardado en el ESCRITORIO'")
+        MessageBox.Show("Guardado en el ESCRITORIO")
 
+    End Sub
+
+    Private Sub DescripcionCarteraHelloLetter()
+
+        Dim query As String = String.Empty
+        Dim listaDatos As New List(Of Dictionary(Of String, String))
+        exp = txtExpHelloLetter.Text.Trim
+        If IsNumeric(exp) Then
+            query = "SELECT Descripcion FROM Clientes AS C JOIN Expedientes AS E ON E.IdCliente = C.idCliente WHERE RefCliente=@exp OR Expediente=@exp"
+        Else
+            query = "SELECT Descripcion FROM Clientes AS C JOIN Expedientes AS E ON E.IdCliente = C.idCliente WHERE RefCliente=@exp OR RefInterna=@exp"
+        End If
+        Try
+            Using connection As New SqlConnection(connectionString)
+                Using command As New SqlCommand(query, connection)
+                    command.Parameters.Add(New SqlParameter("@exp", exp))
+                    connection.Open()
+                    Using reader As SqlDataReader = command.ExecuteReader()
+                        While reader.Read()
+                            Dim registro As New Dictionary(Of String, String)
+                            registro("descripcion") = reader("Descripcion").ToString()
+                            listaDatos.Add(registro)
+                        End While
+                        If listaDatos.Count = 0 Then
+                            MessageBox.Show("No se encontraron datos para el expediente proporcionado.")
+                        End If
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Ocurrió un error: " & ex.Message)
+        End Try
+
+        If listaDatos.Count > 1 Then
+            For Each dato In listaDatos
+                cBoxHelloletter.Items.Add(dato("descripcion"))
+            Next
+        ElseIf listaDatos.Count = 1 Then
+            Dim dato As Dictionary(Of String, String) = listaDatos(0)
+            cBoxHelloletter.Items.Add(dato("descripcion"))
+        End If
+
+    End Sub
+
+    Private Function IdClienteHelloLetter(descripcion As String) As String
+
+        Dim query As String = "SELECT idCliente FROM Clientes WHERE Descripcion=@descripcion"
+        Dim idCliente As String = Nothing
+
+        Try
+            Using connection As New SqlConnection(connectionString)
+                Using command As New SqlCommand(query, connection)
+                    command.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = descripcion
+                    connection.Open()
+                    Try
+                        Using reader As SqlDataReader = command.ExecuteReader()
+                            If reader.Read() Then
+                                idCliente = reader("idCliente").ToString()
+                            End If
+                            If String.IsNullOrEmpty(idCliente) Then
+                                MessageBox.Show("No se encontró el IdCliente para la cartera proporcionada.")
+                            End If
+                        End Using
+                    Catch ex As Exception
+                        MessageBox.Show("Ocurrió un error: " & ex.Message)
+                    End Try
+                End Using
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Ocurrió un error: " & ex.Message)
+        End Try
+
+        Return If(String.IsNullOrEmpty(idCliente), Nothing, idCliente)
+
+    End Function
+
+    Private Function BuscarArchivoHelloLetter(idCliente As String, expediente As String) As String
+
+        Dim rutaCarpetaPrincipal As String = "\\192.168.50.46\e\PBO\HelloLetters"
+
+        Try
+            If Not Directory.Exists(rutaCarpetaPrincipal) Then
+                MessageBox.Show("La carpeta principal especificada no existe.")
+                Return Nothing
+            End If
+
+            'Dim carpetasCliente As String() = Directory.GetDirectories(rutaCarpetaPrincipal, idCliente, SearchOption.AllDirectories)
+            Dim carpetasCliente As String() = Directory.GetDirectories(rutaCarpetaPrincipal, idCliente)
+
+            If carpetasCliente.Length = 0 Then
+                MessageBox.Show("No se encontró una carpeta para el idCliente proporcionado.")
+                Return Nothing
+            Else
+                Dim thread As New Thread(AddressOf Mensaje)
+                thread.Start()
+            End If
+
+            Dim carpetaCliente As String = carpetasCliente(0)
+
+            Dim archivos As String() = Directory.GetFiles(carpetaCliente, "*.pdf", SearchOption.AllDirectories)
+
+            For Each archivo In archivos
+                Dim nombreArchivo As String = Path.GetFileNameWithoutExtension(archivo)
+
+                If nombreArchivo.Contains($"_{expediente}") Then
+                    Return archivo
+                End If
+            Next
+
+            MessageBox.Show("No se encontró ningún archivo con el expediente proporcionado.")
+            Return Nothing
+
+        Catch ex As Exception
+            MessageBox.Show("Ocurrió un error durante la búsqueda del archivo: " & ex.Message)
+            Return Nothing
+        End Try
+    End Function
+
+    Private Sub Helloletter()
+
+        If cBoxHelloletter.SelectedItem IsNot Nothing Then
+            idCliente = Nothing
+            idCliente = IdClienteHelloLetter(cBoxHelloletter.SelectedItem.ToString)
+
+            If idCliente IsNot Nothing Then
+                Dim rutaArchivo As String = BuscarArchivoHelloLetter(idCliente, txtExpHelloLetter.Text)
+
+                If File.Exists(rutaArchivo) Then
+                    Dim rutaEscritorio As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+                    Dim rutaArchivoDestino As String = Path.Combine(rutaEscritorio, Path.GetFileName(rutaArchivo))
+                    File.Copy(rutaArchivo, rutaArchivoDestino, True) ' El último parámetro es para sobrescribir si ya existe
+                    MessageBox.Show("Archivo descargado en el ESCRITORIO")
+                Else
+                    MessageBox.Show("Revise primero los datos o informe de este error.")
+                End If
+            End If
+        End If
+
+    End Sub
+
+    Private Sub Mensaje()
+        MessageBox.Show("Buscando el archivo...")
     End Sub
 
     Private Sub btnBorrar_Click(sender As Object, e As EventArgs) Handles btnBorrar.Click
-
-        Borrar()
-
-    End Sub
-
-    Function Borrar()
 
         nif = ""
         nombre = String.Empty
@@ -781,14 +1036,22 @@ Public Class Form1
         idCliente = String.Empty
         contrato = String.Empty
         cliente = String.Empty
+        descripcion = String.Empty
         portfolio = String.Empty
         tipo = 0
 
-        txtDNI.Text = "DNI"
+        txtDNI.Text = "Introduce un DNI"
+        txtDNI.ReadOnly = False
+        txtExpHelloLetter.Text = "Introduce un Expediente"
+        txtExpHelloLetter.ReadOnly = False
         txtNombre.Text = "Nombre"
+        txtNombre.ReadOnly = False
         txtExpediente.Text = "Expediente"
+        txtExpediente.ReadOnly = False
         txtContrato.Text = "Contrato"
+        txtContrato.ReadOnly = False
         txtImporte.Text = "Deuda total"
+        txtImporte.ReadOnly = False
         txtImporteQuita.Text = "Deuda quita"
 
         txtImportePlazo1.Text = "0.00"
@@ -800,7 +1063,8 @@ Public Class Form1
 
         txtFechaPlazo1.Text = "Ejemplo: 1 de enero del 2000"
 
-    End Function
+        Form1_Load(Me, EventArgs.Empty)
 
+    End Sub
 
 End Class

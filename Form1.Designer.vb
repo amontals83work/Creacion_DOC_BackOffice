@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.cBox = New System.Windows.Forms.ComboBox()
@@ -28,10 +28,6 @@ Partial Class Form1
         Me.pnlDatos = New System.Windows.Forms.Panel()
         Me.txtImporteQuita = New System.Windows.Forms.TextBox()
         Me.pnlAPT = New System.Windows.Forms.Panel()
-        Me.lblPlazoAPT = New System.Windows.Forms.Label()
-        Me.lblPlazos = New System.Windows.Forms.Label()
-        Me.txtFechaPlazo1 = New System.Windows.Forms.TextBox()
-        Me.txtImportePlazo1 = New System.Windows.Forms.TextBox()
         Me.txtFechaPlazo6 = New System.Windows.Forms.TextBox()
         Me.txtImportePlazo6 = New System.Windows.Forms.TextBox()
         Me.txtFechaPlazo5 = New System.Windows.Forms.TextBox()
@@ -47,13 +43,21 @@ Partial Class Form1
         Me.txtContrato = New System.Windows.Forms.TextBox()
         Me.txtNombre = New System.Windows.Forms.TextBox()
         Me.pnlBotones = New System.Windows.Forms.Panel()
+        Me.btnMostrarExps = New System.Windows.Forms.Button()
         Me.btnBorrar = New System.Windows.Forms.Button()
-        Me.btnDescargar = New System.Windows.Forms.Button()
         Me.btnMostrar = New System.Windows.Forms.Button()
+        Me.btnDescargar = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cBoxCancelacion = New System.Windows.Forms.ComboBox()
         Me.txtExpHelloLetter = New System.Windows.Forms.TextBox()
         Me.cBoxHelloletter = New System.Windows.Forms.ComboBox()
+        Me.chLbExpedientes = New System.Windows.Forms.CheckedListBox()
+        Me.lblPlazos = New System.Windows.Forms.Label()
+        Me.lblPlazoAPT = New System.Windows.Forms.Label()
+        Me.lblImportes = New System.Windows.Forms.Label()
+        Me.txtFechaPlazo1 = New System.Windows.Forms.TextBox()
+        Me.txtImportePlazo1 = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.pnlDatos.SuspendLayout()
         Me.pnlAPT.SuspendLayout()
         Me.pnlBotones.SuspendLayout()
@@ -98,7 +102,7 @@ Partial Class Form1
         Me.pnlDatos.Location = New System.Drawing.Point(9, 179)
         Me.pnlDatos.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlDatos.Name = "pnlDatos"
-        Me.pnlDatos.Size = New System.Drawing.Size(213, 284)
+        Me.pnlDatos.Size = New System.Drawing.Size(213, 306)
         Me.pnlDatos.TabIndex = 3
         '
         'txtImporteQuita
@@ -108,58 +112,23 @@ Partial Class Form1
         Me.txtImporteQuita.Name = "txtImporteQuita"
         Me.txtImporteQuita.Size = New System.Drawing.Size(203, 20)
         Me.txtImporteQuita.TabIndex = 8
-        Me.txtImporteQuita.Text = "Deuda quita"
+        Me.txtImporteQuita.Text = "Introduce la deuda final a pagar"
         '
         'pnlAPT
         '
         Me.pnlAPT.Controls.Add(Me.lblPlazoAPT)
-        Me.pnlAPT.Controls.Add(Me.lblPlazos)
+        Me.pnlAPT.Controls.Add(Me.lblImportes)
         Me.pnlAPT.Controls.Add(Me.txtFechaPlazo1)
         Me.pnlAPT.Controls.Add(Me.txtImportePlazo1)
+        Me.pnlAPT.Controls.Add(Me.lblPlazos)
         Me.pnlAPT.Location = New System.Drawing.Point(0, 122)
         Me.pnlAPT.Name = "pnlAPT"
-        Me.pnlAPT.Size = New System.Drawing.Size(213, 42)
+        Me.pnlAPT.Size = New System.Drawing.Size(213, 65)
         Me.pnlAPT.TabIndex = 9
-        '
-        'lblPlazoAPT
-        '
-        Me.lblPlazoAPT.AutoSize = True
-        Me.lblPlazoAPT.Location = New System.Drawing.Point(60, 3)
-        Me.lblPlazoAPT.Name = "lblPlazoAPT"
-        Me.lblPlazoAPT.Size = New System.Drawing.Size(80, 13)
-        Me.lblPlazoAPT.TabIndex = 26
-        Me.lblPlazoAPT.Text = "Fecha de Pago"
-        '
-        'lblPlazos
-        '
-        Me.lblPlazos.AutoSize = True
-        Me.lblPlazos.Location = New System.Drawing.Point(8, 3)
-        Me.lblPlazos.Name = "lblPlazos"
-        Me.lblPlazos.Size = New System.Drawing.Size(42, 13)
-        Me.lblPlazos.TabIndex = 25
-        Me.lblPlazos.Text = "Importe"
-        '
-        'txtFechaPlazo1
-        '
-        Me.txtFechaPlazo1.Location = New System.Drawing.Point(63, 20)
-        Me.txtFechaPlazo1.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtFechaPlazo1.Name = "txtFechaPlazo1"
-        Me.txtFechaPlazo1.Size = New System.Drawing.Size(148, 20)
-        Me.txtFechaPlazo1.TabIndex = 11
-        Me.txtFechaPlazo1.Text = "Ejemplo: 1 de enero del 2000"
-        '
-        'txtImportePlazo1
-        '
-        Me.txtImportePlazo1.Location = New System.Drawing.Point(8, 20)
-        Me.txtImportePlazo1.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtImportePlazo1.Name = "txtImportePlazo1"
-        Me.txtImportePlazo1.Size = New System.Drawing.Size(51, 20)
-        Me.txtImportePlazo1.TabIndex = 10
-        Me.txtImportePlazo1.Text = "0,00"
         '
         'txtFechaPlazo6
         '
-        Me.txtFechaPlazo6.Location = New System.Drawing.Point(63, 263)
+        Me.txtFechaPlazo6.Location = New System.Drawing.Point(63, 284)
         Me.txtFechaPlazo6.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFechaPlazo6.Name = "txtFechaPlazo6"
         Me.txtFechaPlazo6.Size = New System.Drawing.Size(148, 20)
@@ -167,7 +136,7 @@ Partial Class Form1
         '
         'txtImportePlazo6
         '
-        Me.txtImportePlazo6.Location = New System.Drawing.Point(8, 263)
+        Me.txtImportePlazo6.Location = New System.Drawing.Point(8, 284)
         Me.txtImportePlazo6.Margin = New System.Windows.Forms.Padding(2)
         Me.txtImportePlazo6.Name = "txtImportePlazo6"
         Me.txtImportePlazo6.Size = New System.Drawing.Size(51, 20)
@@ -175,7 +144,7 @@ Partial Class Form1
         '
         'txtFechaPlazo5
         '
-        Me.txtFechaPlazo5.Location = New System.Drawing.Point(63, 239)
+        Me.txtFechaPlazo5.Location = New System.Drawing.Point(63, 260)
         Me.txtFechaPlazo5.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFechaPlazo5.Name = "txtFechaPlazo5"
         Me.txtFechaPlazo5.Size = New System.Drawing.Size(148, 20)
@@ -183,7 +152,7 @@ Partial Class Form1
         '
         'txtImportePlazo5
         '
-        Me.txtImportePlazo5.Location = New System.Drawing.Point(8, 239)
+        Me.txtImportePlazo5.Location = New System.Drawing.Point(8, 260)
         Me.txtImportePlazo5.Margin = New System.Windows.Forms.Padding(2)
         Me.txtImportePlazo5.Name = "txtImportePlazo5"
         Me.txtImportePlazo5.Size = New System.Drawing.Size(51, 20)
@@ -191,7 +160,7 @@ Partial Class Form1
         '
         'txtFechaPlazo4
         '
-        Me.txtFechaPlazo4.Location = New System.Drawing.Point(63, 215)
+        Me.txtFechaPlazo4.Location = New System.Drawing.Point(63, 236)
         Me.txtFechaPlazo4.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFechaPlazo4.Name = "txtFechaPlazo4"
         Me.txtFechaPlazo4.Size = New System.Drawing.Size(148, 20)
@@ -199,7 +168,7 @@ Partial Class Form1
         '
         'txtImportePlazo4
         '
-        Me.txtImportePlazo4.Location = New System.Drawing.Point(8, 215)
+        Me.txtImportePlazo4.Location = New System.Drawing.Point(8, 236)
         Me.txtImportePlazo4.Margin = New System.Windows.Forms.Padding(2)
         Me.txtImportePlazo4.Name = "txtImportePlazo4"
         Me.txtImportePlazo4.Size = New System.Drawing.Size(51, 20)
@@ -207,7 +176,7 @@ Partial Class Form1
         '
         'txtFechaPlazo3
         '
-        Me.txtFechaPlazo3.Location = New System.Drawing.Point(63, 191)
+        Me.txtFechaPlazo3.Location = New System.Drawing.Point(63, 212)
         Me.txtFechaPlazo3.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFechaPlazo3.Name = "txtFechaPlazo3"
         Me.txtFechaPlazo3.Size = New System.Drawing.Size(148, 20)
@@ -215,7 +184,7 @@ Partial Class Form1
         '
         'txtImportePlazo3
         '
-        Me.txtImportePlazo3.Location = New System.Drawing.Point(8, 191)
+        Me.txtImportePlazo3.Location = New System.Drawing.Point(8, 212)
         Me.txtImportePlazo3.Margin = New System.Windows.Forms.Padding(2)
         Me.txtImportePlazo3.Name = "txtImportePlazo3"
         Me.txtImportePlazo3.Size = New System.Drawing.Size(51, 20)
@@ -223,19 +192,21 @@ Partial Class Form1
         '
         'txtFechaPlazo2
         '
-        Me.txtFechaPlazo2.Location = New System.Drawing.Point(63, 167)
+        Me.txtFechaPlazo2.Location = New System.Drawing.Point(63, 188)
         Me.txtFechaPlazo2.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFechaPlazo2.Name = "txtFechaPlazo2"
         Me.txtFechaPlazo2.Size = New System.Drawing.Size(148, 20)
         Me.txtFechaPlazo2.TabIndex = 13
+        Me.txtFechaPlazo2.Text = "1 de febrero del 2024"
         '
         'txtImportePlazo2
         '
-        Me.txtImportePlazo2.Location = New System.Drawing.Point(8, 167)
+        Me.txtImportePlazo2.Location = New System.Drawing.Point(8, 188)
         Me.txtImportePlazo2.Margin = New System.Windows.Forms.Padding(2)
         Me.txtImportePlazo2.Name = "txtImportePlazo2"
         Me.txtImportePlazo2.Size = New System.Drawing.Size(51, 20)
         Me.txtImportePlazo2.TabIndex = 12
+        Me.txtImportePlazo2.Text = "0,00"
         '
         'txtExpediente
         '
@@ -280,13 +251,26 @@ Partial Class Form1
         'pnlBotones
         '
         Me.pnlBotones.Controls.Add(Me.btnBorrar)
-        Me.pnlBotones.Controls.Add(Me.btnDescargar)
+        Me.pnlBotones.Controls.Add(Me.btnMostrarExps)
         Me.pnlBotones.Controls.Add(Me.btnMostrar)
+        Me.pnlBotones.Controls.Add(Me.btnDescargar)
         Me.pnlBotones.Location = New System.Drawing.Point(9, 114)
         Me.pnlBotones.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlBotones.Name = "pnlBotones"
         Me.pnlBotones.Size = New System.Drawing.Size(213, 59)
         Me.pnlBotones.TabIndex = 1
+        '
+        'btnMostrarExps
+        '
+        Me.btnMostrarExps.BackColor = System.Drawing.Color.MistyRose
+        Me.btnMostrarExps.FlatAppearance.BorderSize = 0
+        Me.btnMostrarExps.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMostrarExps.Location = New System.Drawing.Point(8, 3)
+        Me.btnMostrarExps.Name = "btnMostrarExps"
+        Me.btnMostrarExps.Size = New System.Drawing.Size(203, 23)
+        Me.btnMostrarExps.TabIndex = 34
+        Me.btnMostrarExps.Text = "Mostrar Expedientes"
+        Me.btnMostrarExps.UseVisualStyleBackColor = False
         '
         'btnBorrar
         '
@@ -296,18 +280,6 @@ Partial Class Form1
         Me.btnBorrar.TabIndex = 32
         Me.btnBorrar.Text = "Borrar"
         Me.btnBorrar.UseVisualStyleBackColor = True
-        '
-        'btnDescargar
-        '
-        Me.btnDescargar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.btnDescargar.FlatAppearance.BorderSize = 0
-        Me.btnDescargar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDescargar.Location = New System.Drawing.Point(8, 3)
-        Me.btnDescargar.Name = "btnDescargar"
-        Me.btnDescargar.Size = New System.Drawing.Size(203, 23)
-        Me.btnDescargar.TabIndex = 31
-        Me.btnDescargar.Text = "Descargar Documento"
-        Me.btnDescargar.UseVisualStyleBackColor = False
         '
         'btnMostrar
         '
@@ -320,6 +292,18 @@ Partial Class Form1
         Me.btnMostrar.TabIndex = 4
         Me.btnMostrar.Text = "Mostrar Datos"
         Me.btnMostrar.UseVisualStyleBackColor = False
+        '
+        'btnDescargar
+        '
+        Me.btnDescargar.BackColor = System.Drawing.Color.FromArgb(CType(CType(212, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.btnDescargar.FlatAppearance.BorderSize = 0
+        Me.btnDescargar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDescargar.Location = New System.Drawing.Point(8, 3)
+        Me.btnDescargar.Name = "btnDescargar"
+        Me.btnDescargar.Size = New System.Drawing.Size(203, 23)
+        Me.btnDescargar.TabIndex = 31
+        Me.btnDescargar.Text = "Descargar Documento"
+        Me.btnDescargar.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -362,12 +346,78 @@ Partial Class Form1
         Me.cBoxHelloletter.TabIndex = 10
         Me.cBoxHelloletter.Text = "Elige una cartera"
         '
+        'chLbExpedientes
+        '
+        Me.chLbExpedientes.FormattingEnabled = True
+        Me.chLbExpedientes.HorizontalScrollbar = True
+        Me.chLbExpedientes.Location = New System.Drawing.Point(243, 77)
+        Me.chLbExpedientes.Name = "chLbExpedientes"
+        Me.chLbExpedientes.Size = New System.Drawing.Size(75, 64)
+        Me.chLbExpedientes.TabIndex = 11
+        '
+        'lblPlazos
+        '
+        Me.lblPlazos.AutoSize = True
+        Me.lblPlazos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPlazos.Location = New System.Drawing.Point(7, 6)
+        Me.lblPlazos.Name = "lblPlazos"
+        Me.lblPlazos.Size = New System.Drawing.Size(207, 13)
+        Me.lblPlazos.TabIndex = 26
+        Me.lblPlazos.Text = "PLAZOS DE ACUERDOS DE PAGO"
+        '
+        'lblPlazoAPT
+        '
+        Me.lblPlazoAPT.AutoSize = True
+        Me.lblPlazoAPT.Location = New System.Drawing.Point(60, 26)
+        Me.lblPlazoAPT.Name = "lblPlazoAPT"
+        Me.lblPlazoAPT.Size = New System.Drawing.Size(85, 13)
+        Me.lblPlazoAPT.TabIndex = 34
+        Me.lblPlazoAPT.Text = "Fechas de Pago"
+        '
+        'lblImportes
+        '
+        Me.lblImportes.AutoSize = True
+        Me.lblImportes.Location = New System.Drawing.Point(8, 26)
+        Me.lblImportes.Name = "lblImportes"
+        Me.lblImportes.Size = New System.Drawing.Size(47, 13)
+        Me.lblImportes.TabIndex = 33
+        Me.lblImportes.Text = "Importes"
+        '
+        'txtFechaPlazo1
+        '
+        Me.txtFechaPlazo1.Location = New System.Drawing.Point(63, 42)
+        Me.txtFechaPlazo1.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtFechaPlazo1.Name = "txtFechaPlazo1"
+        Me.txtFechaPlazo1.Size = New System.Drawing.Size(148, 20)
+        Me.txtFechaPlazo1.TabIndex = 32
+        Me.txtFechaPlazo1.Text = "1 de enero del 2024"
+        '
+        'txtImportePlazo1
+        '
+        Me.txtImportePlazo1.Location = New System.Drawing.Point(8, 42)
+        Me.txtImportePlazo1.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtImportePlazo1.Name = "txtImportePlazo1"
+        Me.txtImportePlazo1.Size = New System.Drawing.Size(51, 20)
+        Me.txtImportePlazo1.TabIndex = 31
+        Me.txtImportePlazo1.Text = "0,00"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(243, 61)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(65, 13)
+        Me.Label2.TabIndex = 34
+        Me.Label2.Text = "Expedientes"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(242, 483)
+        Me.ClientSize = New System.Drawing.Size(339, 494)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.chLbExpedientes)
         Me.Controls.Add(Me.cBoxHelloletter)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.pnlBotones)
@@ -412,11 +462,15 @@ Partial Class Form1
     Friend WithEvents btnBorrar As Button
     Friend WithEvents cBoxCancelacion As ComboBox
     Friend WithEvents pnlAPT As Panel
-    Friend WithEvents lblPlazos As Label
-    Friend WithEvents txtFechaPlazo1 As TextBox
-    Friend WithEvents txtImportePlazo1 As TextBox
     Friend WithEvents txtImporteQuita As TextBox
-    Friend WithEvents lblPlazoAPT As Label
     Friend WithEvents txtExpHelloLetter As TextBox
     Friend WithEvents cBoxHelloletter As ComboBox
+    Friend WithEvents chLbExpedientes As CheckedListBox
+    Friend WithEvents btnMostrarExps As Button
+    Friend WithEvents lblPlazos As Label
+    Friend WithEvents lblPlazoAPT As Label
+    Friend WithEvents lblImportes As Label
+    Friend WithEvents txtFechaPlazo1 As TextBox
+    Friend WithEvents txtImportePlazo1 As TextBox
+    Friend WithEvents Label2 As Label
 End Class

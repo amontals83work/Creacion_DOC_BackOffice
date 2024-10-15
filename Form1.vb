@@ -24,8 +24,8 @@ Public Class Form1
     Dim cliente As String = String.Empty
     Dim descripcion As String = String.Empty
     Dim fechaHoy As String = DateTime.Now.ToString("yyyyMMdd")
-    Dim portfolio As String = String.Empty
-    Dim portfolioText As String = String.Empty
+    'Dim portfolio As String = String.Empty
+    'Dim portfolioText As String = String.Empty
     Dim tipo As Integer = 0
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -38,12 +38,12 @@ Public Class Form1
         cBox.Items.Add("Carta de cancelación")
         cBox.Items.Add("Helloletter")
 
-        cBoxCancelacion.Items.Clear()
-        cBoxCancelacion.SelectedIndex = -1
-        cBoxCancelacion.DisplayMember = ""
-        cBoxCancelacion.Items.Add("Crisalidas")
-        cBoxCancelacion.Items.Add("Orange")
-        cBoxCancelacion.Items.Add("Pagantis")
+        'cBoxCancelacion.Items.Clear()
+        'cBoxCancelacion.SelectedIndex = -1
+        'cBoxCancelacion.DisplayMember = ""
+        'cBoxCancelacion.Items.Add("Crisalidas")
+        'cBoxCancelacion.Items.Add("Orange")
+        'cBoxCancelacion.Items.Add("Pagantis")
         cBoxCancelacion.Visible = False
 
         cBoxHelloletter.Items.Clear()
@@ -53,7 +53,7 @@ Public Class Form1
 
         txtDNI.Visible = False
         txtExpHelloLetter.Visible = False
-        cBoxCancelacion.Visible = False
+        'cBoxCancelacion.Visible = False
         cBoxHelloletter.Visible = False
         pnlDatos.Visible = False
         pnlBotones.Visible = False
@@ -80,7 +80,7 @@ Public Class Form1
             txtDNI.ReadOnly = False
             txtExpHelloLetter.Visible = False
             txtExpHelloLetter.ReadOnly = False
-            cBoxCancelacion.Visible = False
+            'cBoxCancelacion.Visible = False
             pnlDatos.Visible = False
             lblImportes.Text = "Importe"
             lblImportes.Visible = True
@@ -94,29 +94,11 @@ Public Class Form1
             txtImporteQuita.ReadOnly = False
             txtImportePlazo1.Visible = True
             txtImportePlazo1.ReadOnly = False
-            txtImportePlazo2.Visible = False
-            txtImportePlazo2.ReadOnly = False
-            txtImportePlazo3.Visible = False
-            txtImportePlazo3.ReadOnly = False
-            txtImportePlazo4.Visible = False
-            txtImportePlazo4.ReadOnly = False
-            txtImportePlazo5.Visible = False
-            txtFechaPlazo5.ReadOnly = False
-            txtImportePlazo6.Visible = False
-            txtImportePlazo6.ReadOnly = False
             txtFechaPlazo1.Visible = True
             txtFechaPlazo1.ReadOnly = False
-            txtFechaPlazo2.Visible = False
-            txtFechaPlazo2.ReadOnly = False
-            txtFechaPlazo3.Visible = False
-            txtFechaPlazo3.ReadOnly = False
-            txtFechaPlazo4.Visible = False
-            txtFechaPlazo4.ReadOnly = False
-            txtFechaPlazo5.Visible = False
-            txtFechaPlazo5.ReadOnly = False
-            txtFechaPlazo6.Visible = False
-            txtFechaPlazo6.ReadOnly = False
-            pnlAPT.Location = New Drawing.Point(0, 100)
+            pnlAPT_1.Visible = True
+            pnlAPT_1.Location = New Drawing.Point(0, 100)
+            pnlAPT_2.Visible = False
             pnlBotones.Location = New Drawing.Point(10, 115)
             pnlBotones.Visible = True
             btnDescargar.Visible = False
@@ -131,7 +113,7 @@ Public Class Form1
 
             txtDNI.Visible = True
             txtExpHelloLetter.Visible = False
-            cBoxCancelacion.Visible = False
+            'cBoxCancelacion.Visible = False
             pnlDatos.Visible = False
             lblImportes.Text = "Importes"
             lblImportes.Visible = True
@@ -141,18 +123,10 @@ Public Class Form1
             txtImporte.Visible = True
             txtImporteQuita.Visible = True
             txtImportePlazo1.Visible = True
-            txtImportePlazo2.Visible = True
-            txtImportePlazo3.Visible = True
-            txtImportePlazo4.Visible = True
-            txtImportePlazo5.Visible = True
-            txtImportePlazo6.Visible = True
             txtFechaPlazo1.Visible = True
-            txtFechaPlazo2.Visible = True
-            txtFechaPlazo3.Visible = True
-            txtFechaPlazo4.Visible = True
-            txtFechaPlazo5.Visible = True
-            txtFechaPlazo6.Visible = True
-            pnlAPT.Location = New Drawing.Point(0, 123)
+            pnlAPT_1.Visible = True
+            pnlAPT_1.Location = New Drawing.Point(0, 123)
+            pnlAPT_2.Visible = True
             pnlBotones.Location = New Drawing.Point(10, 115)
             pnlBotones.Visible = True
             btnDescargar.Visible = False
@@ -164,62 +138,35 @@ Public Class Form1
 
         ElseIf cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Carta de cancelación" Then
 
-            txtDNI.Visible = False
-            txtExpHelloLetter.Visible = False
-            cBoxCancelacion.Visible = True
+            txtDNI.Visible = True
             pnlDatos.Visible = False
             lblImportes.Visible = False
-            lblPlazoAPT.Visible = False
             txtContrato.Visible = False
-            txtImporte.Visible = False
             txtImporteQuita.Visible = False
-            txtImportePlazo1.Visible = False
-            txtImportePlazo2.Visible = False
-            txtImportePlazo3.Visible = False
-            txtImportePlazo4.Visible = False
-            txtImportePlazo5.Visible = False
-            txtImportePlazo6.Visible = False
-            txtFechaPlazo1.Visible = False
-            txtFechaPlazo2.Visible = False
-            txtFechaPlazo3.Visible = False
-            txtFechaPlazo4.Visible = False
-            txtFechaPlazo5.Visible = False
-            txtFechaPlazo6.Visible = False
-            pnlAPT.Location = New Drawing.Point(0, 122)
             pnlBotones.Location = New Drawing.Point(10, 115)
             pnlBotones.Visible = True
+            pnlAPT_1.Visible = False
+            pnlAPT_2.Visible = False
             btnDescargar.Visible = False
-            btnMostrarExps.Visible = True
             btnMostrar.Visible = True
             btnBorrar.Visible = False
-            Me.Size = New Size(258, 195)
+            Me.Size = New Size(Me.Width, 195)
+            'cBoxCancelacion.Visible = False
             tipo = 3
-            cBoxCancelacion.Font = New Drawing.Font(cBoxCancelacion.Font.FontFamily, 8.25F)
 
         ElseIf cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Helloletter" Then
 
             txtDNI.Visible = False
             txtExpHelloLetter.Visible = True
-            cBoxCancelacion.Visible = False
+            'cBoxCancelacion.Visible = False
             pnlDatos.Visible = False
             lblImportes.Visible = False
             lblPlazoAPT.Visible = False
             txtContrato.Visible = False
             txtImporte.Visible = False
-            txtImporteQuita.Visible = False
-            txtImportePlazo1.Visible = False
-            txtImportePlazo2.Visible = False
-            txtImportePlazo3.Visible = False
-            txtImportePlazo4.Visible = False
-            txtImportePlazo5.Visible = False
-            txtImportePlazo6.Visible = False
-            txtFechaPlazo1.Visible = False
-            txtFechaPlazo2.Visible = False
-            txtFechaPlazo3.Visible = False
-            txtFechaPlazo4.Visible = False
-            txtFechaPlazo5.Visible = False
-            txtFechaPlazo6.Visible = False
-            pnlAPT.Location = New Drawing.Point(0, 122)
+            pnlAPT_1.Visible = False
+            pnlAPT_1.Location = New Drawing.Point(0, 122)
+            pnlAPT_2.Visible = False
             pnlBotones.Location = New Drawing.Point(10, 115)
             pnlBotones.Visible = True
             btnDescargar.Visible = False
@@ -233,31 +180,31 @@ Public Class Form1
 
     End Sub
 
-    Private Sub cBoxCancelacion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cBoxCancelacion.SelectedIndexChanged
+    'Private Sub cBoxCancelacion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cBoxCancelacion.SelectedIndexChanged
 
-        txtDNI.Visible = True
-        pnlDatos.Visible = False
-        lblImportes.Visible = False
-        pnlBotones.Location = New Drawing.Point(10, 115)
-        pnlBotones.Visible = True
-        btnDescargar.Visible = False
-        btnMostrar.Visible = True
-        btnBorrar.Visible = False
-        Me.Size = New Size(Me.Width, 195)
-        cBoxCancelacion.Visible = False
+    '    txtDNI.Visible = True
+    '    pnlDatos.Visible = False
+    '    lblImportes.Visible = False
+    '    pnlBotones.Location = New Drawing.Point(10, 115)
+    '    pnlBotones.Visible = True
+    '    btnDescargar.Visible = False
+    '    btnMostrar.Visible = True
+    '    btnBorrar.Visible = False
+    '    Me.Size = New Size(Me.Width, 195)
+    '    cBoxCancelacion.Visible = False
 
-        If cBoxCancelacion.SelectedItem IsNot Nothing AndAlso cBoxCancelacion.SelectedItem.ToString() = "Crisalidas" Then
-            portfolio = "Crisalidas"
-            'portfolioText = "AXACTOR PORTFOLIO HOLDING AB"
-        ElseIf cBoxCancelacion.SelectedItem IsNot Nothing AndAlso cBoxCancelacion.SelectedItem.ToString() = "Orange" Then
-            portfolio = "Orange"
-            'portfolioText = "QUARTZ CAPITAL FUND II, cuyo origen es Orange"
-        ElseIf cBoxCancelacion.SelectedItem IsNot Nothing AndAlso cBoxCancelacion.SelectedItem.ToString() = "Pagantis" Then
-            portfolio = "Pagantis"
-            'portfolioText = "Pagamastarde, S.L. y cuyo origen es Pagantis"
-        End If
+    '    If cBoxCancelacion.SelectedItem IsNot Nothing AndAlso cBoxCancelacion.SelectedItem.ToString() = "Crisalidas" Then
+    '        portfolio = "Crisalidas"
+    '        'portfolioText = "AXACTOR PORTFOLIO HOLDING AB"
+    '    ElseIf cBoxCancelacion.SelectedItem IsNot Nothing AndAlso cBoxCancelacion.SelectedItem.ToString() = "Orange" Then
+    '        portfolio = "Orange"
+    '        'portfolioText = "QUARTZ CAPITAL FUND II, cuyo origen es Orange"
+    '    ElseIf cBoxCancelacion.SelectedItem IsNot Nothing AndAlso cBoxCancelacion.SelectedItem.ToString() = "Pagantis" Then
+    '        portfolio = "Pagantis"
+    '        'portfolioText = "Pagamastarde, S.L. y cuyo origen es Pagantis"
+    '    End If
 
-    End Sub
+    'End Sub
 
     Private Sub cBoxHelloletter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cBoxHelloletter.SelectedIndexChanged
 
@@ -289,7 +236,8 @@ Public Class Form1
     Private Sub btnMostrar_Click(sender As Object, e As EventArgs) Handles btnMostrar.Click
 
         txtDNI.Visible = False
-        pnlAPT.Visible = False
+        pnlAPT_1.Visible = False
+        pnlAPT_2.Visible = False
         pnlDatos.Visible = False
         pnlBotones.Visible = False
         btnMostrar.Visible = False
@@ -306,7 +254,8 @@ Public Class Form1
             pnlBotones.Location = New Drawing.Point(10, 282)
             pnlDatos.Location = New Drawing.Point(10, 114)
             pnlDatos.Visible = True
-            pnlAPT.Visible = True
+            pnlAPT_1.Visible = True
+            pnlAPT_2.Visible = False
             pnlBotones.Visible = True
             Me.Size = New Size(355, 392)
         ElseIf cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Carta de acuerdo a plazos" Then
@@ -320,7 +269,8 @@ Public Class Form1
             pnlBotones.Location = New Drawing.Point(10, 425)
             pnlDatos.Location = New Drawing.Point(10, 114)
             pnlDatos.Visible = True
-            pnlAPT.Visible = True
+            pnlAPT_1.Visible = True
+            pnlAPT_2.Visible = True
             pnlBotones.Visible = True
             Me.Size = New Size(355, 535)
         ElseIf cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Carta de cancelación" Then
@@ -335,6 +285,8 @@ Public Class Form1
             pnlDatos.Location = New Drawing.Point(10, 114)
             pnlDatos.Visible = True
             pnlBotones.Visible = True
+            pnlAPT_1.Visible = False
+            pnlAPT_2.Visible = False
             Me.Size = New Size(355, 275)
         ElseIf cBox.SelectedItem IsNot Nothing AndAlso cBox.SelectedItem.ToString() = "Helloletter" Then
             txtExpHelloLetter.Visible = True
@@ -347,6 +299,8 @@ Public Class Form1
             btnDescargar.Visible = False
             pnlBotones.Location = New Drawing.Point(10, 85)
             pnlBotones.Visible = True
+            pnlAPT_1.Visible = False
+            pnlAPT_2.Visible = False
             Me.Size = New Size(258, 195)
 
         End If
@@ -880,11 +834,11 @@ Public Class Form1
         Dim prf1 As Microsoft.Office.Interop.Word.Range = doc.Range(doc.Content.End - 1, doc.Content.End)
         prf1.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphJustify
         prf1.HighlightColorIndex = Microsoft.Office.Interop.Word.WdColorIndex.wdNoHighlight
-        If portfolio = "Crisalidas" Then
-            prf1.Text = vbCrLf & "Expediente: " & txtExpediente.Text & vbCrLf & vbCrLf & "Estimado/a D/Dña.: " & nombre.ToUpper() & vbCrLf
-        Else
-            prf1.Text = vbCrLf & "Referencia del crédito: " & txtExpediente.Text & vbCrLf & vbCrLf & "Estimado/a D/Dña.: " & nombre.ToUpper() & vbCrLf
-        End If
+        prf1.Text = vbCrLf & "Referencia del crédito: " & txtExpediente.Text & vbCrLf & vbCrLf & "Estimado/a D/Dña.: " & nombre.ToUpper() & vbCrLf
+        'If portfolio = "Crisalidas" Then
+        '    prf1.Text = vbCrLf & "Expediente: " & txtExpediente.Text & vbCrLf & vbCrLf & "Estimado/a D/Dña.: " & nombre.ToUpper() & vbCrLf
+        'Else
+        'End If
         prf1.Font.Size = 10
         prf1.Font.Bold = False
 
@@ -946,7 +900,7 @@ Public Class Form1
         prf8.Font.Bold = True
 
         ' Guardar cambios y cerrar
-        Dim destinationFolderPath As String = "\\192.168.50.46\e\PBO\Cancelacion\" & portfolio.ToString()
+        Dim destinationFolderPath As String = "\\192.168.50.46\e\PBO\Cancelacion\" & cliente.ToString()
         If Not Directory.Exists(destinationFolderPath) Then
             Directory.CreateDirectory(destinationFolderPath)
         End If
@@ -1116,21 +1070,21 @@ Public Class Form1
         contrato = String.Empty
         cliente = String.Empty
         descripcion = String.Empty
-        portfolio = String.Empty
+        'portfolio = String.Empty
         tipo = 0
 
         txtDNI.Text = "Introduce un DNI"
         txtDNI.ReadOnly = False
         txtExpHelloLetter.Text = "Introduce un Expediente"
         txtExpHelloLetter.ReadOnly = False
-        txtNombre.Text = "Nombre"
-        txtNombre.ReadOnly = False
-        txtExpediente.Text = "Expediente"
-        txtExpediente.ReadOnly = False
-        txtContrato.Text = "Contrato"
-        txtContrato.ReadOnly = False
-        txtImporte.Text = "Deuda total"
-        txtImporte.ReadOnly = False
+        'txtNombre.Text = "Nombre"
+        'txtNombre.ReadOnly = False
+        'txtExpediente.Text = "Expediente"
+        'txtExpediente.ReadOnly = False
+        'txtContrato.Text = "Contrato"
+        'txtContrato.ReadOnly = False
+        'txtImporte.Text = "Deuda total"
+        'txtImporte.ReadOnly = False
         txtImporteQuita.Text = "Introduce la deuda final a pagar"
 
         txtImportePlazo1.Text = "0.00"
@@ -1147,11 +1101,12 @@ Public Class Form1
         btnMostrarExps.Visible = True
         btnBorrar.Visible = False
 
-        pnlAPT.Location = New Drawing.Point(0, 100)
+        pnlAPT_1.Visible = False
+        pnlAPT_1.Location = New Drawing.Point(0, 100)
+        pnlAPT_2.Visible = False
         pnlBotones.Location = New Drawing.Point(10, 115)
         pnlDatos.Visible = False
         pnlBotones.Visible = True
-        pnlAPT.Visible = False
 
         aExpediente.Clear()
         chLbExpedientes.Items.Clear()
